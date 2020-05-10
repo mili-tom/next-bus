@@ -11,7 +11,7 @@ search.addEventListener('submit', event => {
 })
 
 function findStreet(nameOfStreet) {
-fetch(`https://api.winnipegtransit.com/v2/streets.json?name=${nameOfStreet}&usage=short&api-key=${apiKey}`)
+fetch(`https://api.winnipegtransit.com/v3/streets.json?name=${nameOfStreet}&usage=short&api-key=${apiKey}`)
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -19,11 +19,15 @@ fetch(`https://api.winnipegtransit.com/v2/streets.json?name=${nameOfStreet}&usag
       throw new Error('Sorry, error was occured!')
     }
   })  
-  .then(json => 
-    json.streets.forEach(street => {
-    insertStreetsList(street);
-    })
-  )
+  .then(function(json) {
+    if (json.streets.length === 0) {
+      insertEmptyList();
+    } else {
+      json.streets.forEach(street => {
+      insertStreetsList(street);
+      })
+    }
+  })
   listElem.innerHTML = '';  
 } 
 
@@ -32,19 +36,18 @@ function insertStreetsList(street) {
     `<a href="#" data-street-key=${street.key}>${street.name}</a>`
   );  
 }
+
+function insertEmptyList() { 
+  listElem.insertAdjacentHTML('afterbegin',
+    `<div class="no-results">No Streets found</div>`
+  );  
+}
   
-// fetch(`https://api.winnipegtransit.com/v2/stops/10064.json?usage=short&api-key=eM0x2PJKCyqqY7BOlun`)
+// fetch(`https://api.winnipegtransit.com/v3/stops/10064.json?usage=short&api-key=eM0x2PJKCyqqY7BOlun`)
 //   .then(response => response.json())
 //   .then(json => console.log(json))
 
-//fetch(`https://api.winnipegtransit.com/v2/stops/10064.schedule.json?api-key=eM0x2PJKCyqqY7BOlun`)
+//fetch(`https://api.winnipegtransit.com/v3/stops/10064.schedule.json?api-key=eM0x2PJKCyqqY7BOlun`)
 //   .then(response => response.json())
 //   .then(json => console.log(json))
 
-listElem.addEventListener('click', function(event) {
-  if (event.target.nodeName === 'A') {
-    const streetKey = event.target.dataset.streetKey;
-    console.log(streetKey);
-    findStops(streetKey);
-  }
-})
