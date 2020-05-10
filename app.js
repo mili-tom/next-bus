@@ -55,7 +55,13 @@ listElem.addEventListener('click', function(event) {
 function findStops(key) {
   fetch(`https://api.winnipegtransit.com/v3/stops.json?street=${key}&usage=long&api-key=${apiKey}`)
     .then(response => response.json())
-    .then(json => console.log(json))
+    .then(json => {
+      json.stops.forEach(stop => {
+        fetch(`https://api.winnipegtransit.com/v3/stops/${stop.key}/schedule.json?api-key=${apiKey}`)
+          .then(response => response.json())
+          .then(json => console.log(json))
+      });
+    });
 }
 
 function displayStreet(street) {
