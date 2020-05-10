@@ -51,3 +51,16 @@ function insertEmptyList() {
 //   .then(response => response.json())
 //   .then(json => console.log(json))
 
+listElem.addEventListener('click', function(event) {
+  if (event.target.nodeName === 'A') {
+    const streetKey = parseInt(event.target.dataset.streetKey);
+    console.log(streetKey);
+    findStops(streetKey);
+  }
+})
+
+function findStops(key) {
+  fetch(`https://api.winnipegtransit.com/v3/stops.json?street=${key}&usage=long&api-key=${apiKey}`)
+    .then(response => response.json())
+    .then(json => console.log(json))
+}
