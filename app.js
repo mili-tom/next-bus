@@ -99,6 +99,11 @@ function displayBus(route, stop) {
       <td>${stop['cross-street']['name']}</td>
       <td>${stop.direction}</td>
       <td>${route.route.key}</td>
-      <td>${time}</td>
+      <td>${getTime(time)}</td>
     </tr>`)
+}
+
+function getTime(time) {
+  let scheduledTime = new Date(time);
+  return scheduledTime.toLocaleTimeString();
 }
