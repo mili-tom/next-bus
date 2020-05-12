@@ -46,7 +46,6 @@ function insertEmptyList() {
 listElem.addEventListener('click', function(event) {
   if (event.target.nodeName === 'A') {    
     const streetKey = parseInt(event.target.dataset.streetKey);
-    //console.log(streetKey);
     findStops(streetKey);
 
     const selectedStreet = event.target.textContent;
@@ -64,21 +63,19 @@ function findStops(key) {
       }
     })
     .then(json => {
-      //console.log(json);
       json.stops.forEach(stop => {
         fetch(`https://api.winnipegtransit.com/v3/stops/${stop.key}/schedule.json?api-key=${apiKey}`)
           .then(response => {
             if (response.ok) {
               return response.json();
             } else {
-              throw new Error('Sorry, error was occured!')
+              throw new Error('Sorry, error was occured!');
             }
           })
           .then(json => {
             const stopSchedule = json['stop-schedule']['stop'];
-            const routes = json['stop-schedule']['route-schedules'];         
-            routes.forEach(route => {
-              //console.log(route);
+            const routesSchedule = json['stop-schedule']['route-schedules'];
+            routesSchedule.forEach(route => {
               displayBus(route, stopSchedule);
             })
           })
@@ -87,7 +84,7 @@ function findStops(key) {
 }
 
 function displayStreet(street) {
-  const titleElem = document.querySelector('#street-name')
+  const titleElem = document.querySelector('#street-name');
   titleElem.textContent = `Displaying results for ${street}`;
 }
 
