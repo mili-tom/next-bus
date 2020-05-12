@@ -78,8 +78,8 @@ function findStops(key) {
             const stopSchedule = json['stop-schedule']['stop'];
             const routes = json['stop-schedule']['route-schedules'];         
             routes.forEach(route => {
-              console.log(route);
-              //displayBus(route, stopSchedule);
+              //console.log(route);
+              displayBus(route, stopSchedule);
             })
           })
       });
@@ -91,3 +91,14 @@ function displayStreet(street) {
   titleElem.textContent = `Displaying results for ${street}`;
 }
 
+function displayBus(route, stop) {
+  let time = route['scheduled-stops'][0].times.departure.scheduled;
+  table.insertAdjacentHTML('afterbegin', 
+    `<tr>
+      <td>${stop.name}</td>
+      <td>${stop['cross-street']['name']}</td>
+      <td>${stop.direction}</td>
+      <td>${route.route.key}</td>
+      <td>${time}</td>
+    </tr>`)
+}
