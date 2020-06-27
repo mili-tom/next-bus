@@ -1,5 +1,5 @@
 # next-bus
-Simple web app which displays scheduled buses
+Simple web app which displays scheduled buses.
 <p>Project page: https://mili-tom.github.io/next-bus/ </p>
 
 <p>
