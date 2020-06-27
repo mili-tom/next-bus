@@ -9,13 +9,13 @@ Simple web app which displays scheduled buses.
 ## Getting Started
 Web app shows upcoming bus at each stop, in both directions, for particular street (based on user query) in realtime using Winnipeg Tranist Data API.
 
-## Installing
+### Installing
 <li>$ git clone https://github.com/mili-tom/next-bus.git</li>
 <li>$ cd next-bus</li>
 <li>$ code .</li>
 <li>run html file in browser</li>
 
-## Features
+### Features
 <li>Call Winnipeg Tranist Data API</li> 
 <li>Parse and display the predicted arrival times</li>
 
