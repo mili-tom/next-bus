@@ -6,8 +6,14 @@ Simple web app which displays scheduled buses.
   <img src="/images/Winnipeg_Transit_Flying-T.png">
 </p>
 
-## About
+## Getting Started
 Web app shows upcoming bus at each stop, in both directions, for particular street (based on user query) in realtime using Winnipeg Tranist Data API.
+
+## Installing
+<li>$ git clone https://github.com/mili-tom/next-bus.git</li>
+<li>$ cd next-bus</li>
+<li>$ code .</li>
+<li>run html file in browser</li>
 
 ## Features
 <li>Call Winnipeg Tranist Data API</li> 
@@ -32,9 +38,3 @@ function getTime(time) {
 <li>HTML</li>
 <li>CSS</li>
 <li>JavaScript</li>
-
-## Run Locally
-<li>$ git clone https://github.com/mili-tom/next-bus.git</li>
-<li>$ cd next-bus</li>
-<li>$ code .</li>
-<li>run html file in browser</li>
