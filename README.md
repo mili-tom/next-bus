@@ -1,6 +1,6 @@
 # next-bus
 Simple web app displays scheduled buses
-<p>Project page: mili-tom.github.io/next-bus/</p>
+<p>Project page: https://mili-tom.github.io/next-bus/ </p>
 
 <p>
   <img src="/images/Winnipeg_Transit_Flying-T.png">
